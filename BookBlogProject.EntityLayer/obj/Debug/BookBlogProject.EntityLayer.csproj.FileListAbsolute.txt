@@ -1,0 +1,11 @@
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\BookBlogProject.EntityLayer.dll.config
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\BookBlogProject.EntityLayer.dll
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\BookBlogProject.EntityLayer.pdb
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\EntityFramework.dll
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\EntityFramework.xml
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\obj\Debug\BookBlogProject.EntityLayer.csproj.CoreCompileInputs.cache
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\obj\Debug\BookBlogProject.EntityLayer.csproj.CopyComplete
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\obj\Debug\BookBlogProject.EntityLayer.dll
+C:\Users\Deneme\source\repos\BookBlogProject.EntityLayer\obj\Debug\BookBlogProject.EntityLayer.pdb

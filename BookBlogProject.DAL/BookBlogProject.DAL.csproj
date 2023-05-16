@@ -1,0 +1,249 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A7D6D148-ECAA-48A9-9C12-CBB5455F1860}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BookBlogProject.DAL</RootNamespace>
+    <AssemblyName>BookBlogProject.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\BookBlogProject\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\BookBlogProject\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Abstract\IAuthorDAL.cs" />
+    <Compile Include="Abstract\IBookDAL.cs" />
+    <Compile Include="Abstract\ICategoryDAL.cs" />
+    <Compile Include="Abstract\IHomeDAL.cs" />
+    <Compile Include="Abstract\IPersonDAL.cs" />
+    <Compile Include="Abstract\IPostDAL.cs" />
+    <Compile Include="Abstract\IRepository.cs" />
+    <Compile Include="Abstract\IRoleDAL.cs" />
+    <Compile Include="Concrete\Context.cs" />
+    <Compile Include="Concrete\GenericRepository.cs" />
+    <Compile Include="EntityFramework\EFAuthorDAL.cs" />
+    <Compile Include="EntityFramework\EFBookDAL.cs" />
+    <Compile Include="EntityFramework\EFCategoryDAL.cs" />
+    <Compile Include="EntityFramework\EFHomeDAL.cs" />
+    <Compile Include="EntityFramework\EFPersonDAL.cs" />
+    <Compile Include="EntityFramework\EFPostDAL.cs" />
+    <Compile Include="EntityFramework\EFRoleDAL.cs" />
+    <Compile Include="Migrations\202304142114222_updateMail.cs" />
+    <Compile Include="Migrations\202304142114222_updateMail.designer.cs">
+      <DependentUpon>202304142114222_updateMail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304172104451_required.cs" />
+    <Compile Include="Migrations\202304172104451_required.designer.cs">
+      <DependentUpon>202304172104451_required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304202108276_bookUpdate.cs" />
+    <Compile Include="Migrations\202304202108276_bookUpdate.designer.cs">
+      <DependentUpon>202304202108276_bookUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304202129487_BookAuthor.cs" />
+    <Compile Include="Migrations\202304202129487_BookAuthor.designer.cs">
+      <DependentUpon>202304202129487_BookAuthor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304202153210_bookDate.cs" />
+    <Compile Include="Migrations\202304202153210_bookDate.designer.cs">
+      <DependentUpon>202304202153210_bookDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304261144256_modelBuilder.cs" />
+    <Compile Include="Migrations\202304261144256_modelBuilder.designer.cs">
+      <DependentUpon>202304261144256_modelBuilder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304261157489_temp.cs" />
+    <Compile Include="Migrations\202304261157489_temp.designer.cs">
+      <DependentUpon>202304261157489_temp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304261200418_PostLast.cs" />
+    <Compile Include="Migrations\202304261200418_PostLast.designer.cs">
+      <DependentUpon>202304261200418_PostLast.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271154470_dele4.cs" />
+    <Compile Include="Migrations\202304271154470_dele4.designer.cs">
+      <DependentUpon>202304271154470_dele4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271753004_fkNull2.cs" />
+    <Compile Include="Migrations\202304271753004_fkNull2.designer.cs">
+      <DependentUpon>202304271753004_fkNull2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271759238_fk.cs" />
+    <Compile Include="Migrations\202304271759238_fk.designer.cs">
+      <DependentUpon>202304271759238_fk.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271803232_fkFin.cs" />
+    <Compile Include="Migrations\202304271803232_fkFin.designer.cs">
+      <DependentUpon>202304271803232_fkFin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271835568_delete9.cs" />
+    <Compile Include="Migrations\202304271835568_delete9.designer.cs">
+      <DependentUpon>202304271835568_delete9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304271840049_delete12.cs" />
+    <Compile Include="Migrations\202304271840049_delete12.designer.cs">
+      <DependentUpon>202304271840049_delete12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304272051044_onmodel.cs" />
+    <Compile Include="Migrations\202304272051044_onmodel.designer.cs">
+      <DependentUpon>202304272051044_onmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202304280920164_BookDuzeltmeler.cs" />
+    <Compile Include="Migrations\202304280920164_BookDuzeltmeler.designer.cs">
+      <DependentUpon>202304280920164_BookDuzeltmeler.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305012207210_bookImage.cs" />
+    <Compile Include="Migrations\202305012207210_bookImage.designer.cs">
+      <DependentUpon>202305012207210_bookImage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305021107473_addMenu.cs" />
+    <Compile Include="Migrations\202305021107473_addMenu.designer.cs">
+      <DependentUpon>202305021107473_addMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305022153035_menuURL.cs" />
+    <Compile Include="Migrations\202305022153035_menuURL.designer.cs">
+      <DependentUpon>202305022153035_menuURL.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305142204303_updateRole.cs" />
+    <Compile Include="Migrations\202305142204303_updateRole.designer.cs">
+      <DependentUpon>202305142204303_updateRole.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305151125307_updatePerson.cs" />
+    <Compile Include="Migrations\202305151125307_updatePerson.designer.cs">
+      <DependentUpon>202305151125307_updatePerson.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305161127214_deleteMenu.cs" />
+    <Compile Include="Migrations\202305161127214_deleteMenu.designer.cs">
+      <DependentUpon>202305161127214_deleteMenu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BookBlogProject.EntityLayer\BookBlogProject.EntityLayer.csproj">
+      <Project>{a17ec87e-f2c4-46c6-ab02-6df450ca3708}</Project>
+      <Name>BookBlogProject.EntityLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202304142114222_updateMail.resx">
+      <DependentUpon>202304142114222_updateMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304172104451_required.resx">
+      <DependentUpon>202304172104451_required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304202108276_bookUpdate.resx">
+      <DependentUpon>202304202108276_bookUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304202129487_BookAuthor.resx">
+      <DependentUpon>202304202129487_BookAuthor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304202153210_bookDate.resx">
+      <DependentUpon>202304202153210_bookDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304261144256_modelBuilder.resx">
+      <DependentUpon>202304261144256_modelBuilder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304261157489_temp.resx">
+      <DependentUpon>202304261157489_temp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304261200418_PostLast.resx">
+      <DependentUpon>202304261200418_PostLast.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271154470_dele4.resx">
+      <DependentUpon>202304271154470_dele4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271753004_fkNull2.resx">
+      <DependentUpon>202304271753004_fkNull2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271759238_fk.resx">
+      <DependentUpon>202304271759238_fk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271803232_fkFin.resx">
+      <DependentUpon>202304271803232_fkFin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271835568_delete9.resx">
+      <DependentUpon>202304271835568_delete9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304271840049_delete12.resx">
+      <DependentUpon>202304271840049_delete12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304272051044_onmodel.resx">
+      <DependentUpon>202304272051044_onmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202304280920164_BookDuzeltmeler.resx">
+      <DependentUpon>202304280920164_BookDuzeltmeler.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305012207210_bookImage.resx">
+      <DependentUpon>202305012207210_bookImage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305021107473_addMenu.resx">
+      <DependentUpon>202305021107473_addMenu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305022153035_menuURL.resx">
+      <DependentUpon>202305022153035_menuURL.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305142204303_updateRole.resx">
+      <DependentUpon>202305142204303_updateRole.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305151125307_updatePerson.resx">
+      <DependentUpon>202305151125307_updatePerson.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305161127214_deleteMenu.resx">
+      <DependentUpon>202305161127214_deleteMenu.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Bu proje bu bilgisayarda olmayan NuGet paketlerine başvuru yapıyor. Bunları indirmek için NuGet Paket Geri Yükleme'yi kullanın. Daha fazla bilgi için, bkz. http://go.microsoft.com/fwlink/?LinkID=322105. Eksik dosya: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\BookBlogProject\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+</Project>
