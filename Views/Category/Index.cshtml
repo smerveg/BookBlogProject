@@ -1,0 +1,106 @@
+﻿@using BookBlogProject.EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Category>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    @*<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+        <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">*@
+
+
+</head>
+
+<body>
+    <input type="hidden" id="cid" />
+    <div class="col-md-12">
+        <a href="/Category/Add" class="btn btn-info">New Category</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Books</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.CategoryName</td>
+            <td>@item.CategoryDescription</td>
+            <td>@item.CategoryStatus</td>
+            <td><a href="/Category/Details/@item.CategoryID" class="btn btn-warning">Detail</a></td>
+            <td><a href="/Category/Update/@item.CategoryID" class="btn btn-default">Edit</a></td>
+            <td><a id="showModal" class="btn btn-info" onclick="Confirm(@item.CategoryID)">Delete</a></td>
+            @if (item.Books.Count() > 0)
+            {
+                <td><a href="/Category/BooksByCategory/@item.CategoryID" class="btn btn-primary">Books</a></td>
+            }
+
+        </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+          {
+              LiElementClasses = new List<string>
+              { "page-link"}
+          })
+    </div>
+</body>
+@Html.Partial("_confirmationPartial")
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('.btnCancel').click(function () {
+            window.location.href = '/Category/Index';
+        })
+
+        $('#btnDelete').click(function () {
+
+            var categoryId = $('#cid').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Category/Delete',
+                data: { id: categoryId },
+                success: function (result) {
+                    if (result) {
+                        $('#cid').val(null);
+                        window.location.href = '/Category/Index';
+
+                    }
+                    else {
+                        alert('wrong');
+                    }
+                }
+
+
+
+            })
+        })
+
+
+
+    })
+    var Confirm = function (id) {
+        $('#cid').val(id);
+        $('#confirmModal').modal('show');
+
+    }
+
+</script>
+

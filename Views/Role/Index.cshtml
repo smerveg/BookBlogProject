@@ -1,0 +1,99 @@
+﻿@using BookBlogProject.EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Role>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+
+<body>
+    <input type="hidden" id="rid" />
+    <div class="col-md-12">
+        <a href="/Role/Add" class="btn btn-info">New Role</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+                <th>Users</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.RoleName</td>
+                    <td>@item.RoleDescription</td>
+                    <td>@item.RoleStatus</td>
+                    <td><a href="/Role/Details/@item.RoleID" class="btn btn-warning">Detail</a></td>
+                    <td><a href="/Role/Update/@item.RoleID" class="btn btn-default">Edit</a></td>
+                    <td><a id="showModal" class="btn btn-info" onclick="Confirm(@item.RoleID)">Delete</a></td>
+                    <td><a href="/Role/UsersByRole/@item.RoleID" class="btn btn-primary">Users</a></td>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+            {
+                LiElementClasses = new List<string>
+                { "page-link"}
+            })
+    </div>
+</body>
+@Html.Partial("_confirmationPartial")
+</html>
+
+<script>
+    $(document).ready(function () {
+        $('.btnCancel').click(function () {
+            window.location.href = '/Role/Index';
+        })
+
+        $('#btnDelete').click(function () {
+
+            var roleId = $('#rid').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Role/Delete',
+                data: { id: roleId },
+                success: function (result) {
+                    if (result) {
+                        $('#rid').val(null);
+                        window.location.href = '/Role/Index';
+
+                    }
+                    else {
+                        alert('wrong');
+                    }
+                }
+
+
+
+            })
+        })
+
+
+
+    })
+    var Confirm = function (id) {
+        $('#rid').val(id);
+        $('#confirmModal').modal('show');
+
+    }
+
+</script>
+

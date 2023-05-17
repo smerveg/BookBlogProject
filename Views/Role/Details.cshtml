@@ -1,0 +1,47 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Role
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Role Details</title>
+</head>
+<body>
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.RoleName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Description")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.RoleDescription, new { @class = "form-control", @readonly = true })
+
+            </div>
+        </div>
+        <br />       
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.RoleStatus, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>
+

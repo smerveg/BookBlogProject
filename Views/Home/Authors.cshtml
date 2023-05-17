@@ -1,0 +1,46 @@
+﻿@using BookBlogProject.EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Author>
+
+@{
+    ViewBag.Title = "Authors";
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+}
+
+<html>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            @foreach (var item in Model)
+            {
+                <div class="title-bordered mb-5 d-flex align-items-center">
+                    <h5 style="background-color:white">@item.AuthorName &nbsp; @item.AuthorLastName</h5>
+
+
+                    <ul class="list-inline social-icons ml-auto mr-3 d-none d-sm-block">
+                        <li class="list-inline-item">
+                            <a href="/Home/AboutAuthor/@item.AuthorID" class="btn btn-outline-primary">&nbsp; About &nbsp;</a>
+                        </li>
+                        <li class="list-inline-item">
+                            <a href="/Home/Books/@item.AuthorID" class="btn btn-outline-primary">&nbsp; Books &nbsp;</a>
+                        </li>
+                    </ul>
+                </div>
+            }
+            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Authors", new { p }), new PagedListRenderOptions
+            {
+                LiElementClasses = new List<string>
+                { "page-link"}
+            })
+
+        </div>
+
+
+    </div>
+</div>
+
+</html>
+
+

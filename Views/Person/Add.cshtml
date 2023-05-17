@@ -1,0 +1,108 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Person
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Person</title>
+
+</head>
+
+<body>
+    @using(Html.BeginForm("Add","Person",FormMethod.Post))
+            {
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("User name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.UserName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Lastname")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Password")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.Password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Mail")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Mail, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.Mail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Role")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.RoleID, (IEnumerable<SelectListItem>)ViewBag.Roles, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.RoleID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.PersonStatus, (IEnumerable<SelectListItem>)ViewBag.Status, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.PersonStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <button class="btn btn-dark">Save</button>
+    </form>
+            }
+</body>
+</html>
+

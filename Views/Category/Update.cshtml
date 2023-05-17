@@ -1,0 +1,64 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Category
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Update Category</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("Update", "Category", FormMethod.Post))
+    {
+        @Html.HiddenFor(x => x.CategoryID)
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.CategoryName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Description")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryDescription, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.CategoryDescription, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.CategoryStatus, (IEnumerable<SelectListItem>)ViewBag.Status, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.CategoryStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <button class="btn btn-dark">Save</button>
+    </form>
+
+    }
+
+</body>
+</html>
+

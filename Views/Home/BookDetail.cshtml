@@ -1,0 +1,53 @@
+﻿@model BookBlogProject.EntityLayer.ViewModels.BookVM
+@{
+    ViewBag.Title = "BookDetail";
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+}
+
+<html>
+ 
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="title-bordered mb-5 d-flex align-items-center">
+                        <h1 class="h4">@Model.BookName</h1>
+                        
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4 mb-md-0 text-center text-md-left">
+                    <img loading="lazy" class="rounded-lg img-fluid" src="@Url.Content(Model.BookImage)">
+                </div>
+                <div class="col-lg-9 col-md-8 content text-center text-md-left">
+                    <div class="col-lg-10 mx-auto">
+                        <ul>
+                            <li>Category :&nbsp;@Model.CategoryName</li>
+                            <li>Release Year :&nbsp;@Model.ReleaseYear</li>
+                            <li>Publisher :&nbsp;@Model.Publisher</li>
+                            <li>Page Count :&nbsp;@Model.PageCount</li>
+                            <li>
+                                Authors :&nbsp;
+                                @foreach (var item in Model.AuthorInfos)
+                                {
+                                    @item.AuthorFullName
+                                    <br />
+                                    <span>
+                                        &emsp;&emsp;&emsp;&emsp;&ensp;
+                                    </span>
+                                }
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-lg-10 mx-auto">
+                        <div class="content">
+                            <p>@Model.BookDescription</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+</html>
+
+
+

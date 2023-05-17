@@ -1,0 +1,108 @@
+﻿@model BookBlogProject.EntityLayer.ViewModels.BookVM
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">s*@
+    <title>Book Details</title>
+
+</head>
+
+<body>
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.BookName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Release Year")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.ReleaseYear, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Book Description")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextAreaFor(x => x.BookDescription, new { @class = "form-control", rows = 10, columns = 10, @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Image")
+            </div>
+            <div class="col-sm-7">
+                <img src="@Url.Content(Model.BookImage)" alt="Image" height=150 width=200 />
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Page Count")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.PageCount, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Publisher")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Cateogry")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Authors")
+            </div>
+            <div class="col-sm-7">
+                @foreach (var item in Model.AuthorInfos)
+                {
+                    @Html.TextBox(" ", item.AuthorFullName, new { @class = "form-control", @readonly = true })
+                    <br />
+                }
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.BookStatus, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+
+
+    </form>
+
+    
+</body>
+</html>
+

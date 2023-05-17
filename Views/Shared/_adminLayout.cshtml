@@ -1,0 +1,212 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
+
+    <title>AdminLTE 3 | Dashboard 3</title>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/Templates/AdminLTE-3.0.4/plugins/fontawesome-free/css/all.min.css">
+
+    <!-- IonIcons -->
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Templates/AdminLTE-3.0.4/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<!--
+BODY TAG OPTIONS:
+=================
+Apply one or more of the following classes to to the body tag
+to get the desired effect
+|---------------------------------------------------------|
+|LAYOUT OPTIONS | sidebar-collapse                        |
+|               | sidebar-mini                            |
+|---------------------------------------------------------|
+-->
+<body class="hold-transition sidebar-mini">
+    <div class="wrapper">
+
+        <!-- Main Sidebar Container -->
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+
+                  
+                </div>
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+    with font-awesome or any other icon font library -->
+                        
+
+                        @if (User.IsInRole("A") || User.IsInRole("PA")|| User.IsInRole("E"))
+                        {
+                            if (User.IsInRole("A"))
+                            {
+                            <li class="nav-item">
+                                <a href="~/Person/Index" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>
+                                        People
+                                    </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                            <a href="~/Category/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Categories
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Role/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Roles
+                                </p>
+                            </a>
+                        </li>
+                        }
+                            <li class="nav-item">
+                            <a href="~/Author/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Authors
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Book/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Books
+                                </p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="~/Post/Index" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Posts
+                                </p>
+                            </a>
+                        </li>
+                        }
+                        
+                        
+                        <li class="nav-item">
+                            <a href="/Login/Logout" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>
+                                    Log out
+                                </p>
+                            </a>
+                        </li>
+
+
+
+
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+            </div>
+            <!-- /.sidebar -->
+
+        </aside>
+
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <div class="content-header">
+                <div class="container-fluid">
+                    <!--<div class="row mb-2">
+                        <div class="col-sm-6">
+
+                        </div>-->
+                    <!-- /.col -->
+                    <!--<div class="col-sm-6">
+
+                    </div>-->
+                    <!-- /.col -->
+                    <!--</div>--><!-- /.row -->
+                </div><!-- /.container-fluid -->
+            </div>
+            <!-- /.content-header -->
+            <!-- Main content -->
+            <div class="content">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+
+
+                                    </div>
+                                </div>
+                                <div class="card-body">
+
+                                    <p>@RenderBody()</p>
+
+                                    <!-- /.d-flex -->
+
+
+
+
+                                </div>
+                            </div>
+                            <!-- /.card -->
+
+
+                        </div>
+                        <!-- /.col-md-6 -->
+
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+        <!-- Main Footer -->
+        <footer class="main-footer">
+        </footer>
+    </div>
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    @*<script src="~/Templates/AdminLTE-3.0.4/plugins/jquery/jquery.min.js"></script>*@
+   
+    <!-- Bootstrap -->
+    <script src="~/Templates/AdminLTE-3.0.4/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="~/Templates/AdminLTE-3.0.4/dist/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="~/Templates/AdminLTE-3.0.4/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/Templates/AdminLTE-3.0.4/dist/js/demo.js"></script>
+    <script src="~/Templates/AdminLTE-3.0.4/dist/js/pages/dashboard3.js"></script>
+</body>
+</html>

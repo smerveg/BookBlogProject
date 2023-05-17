@@ -1,0 +1,50 @@
+﻿@model IEnumerable<BookBlogProject.EntityLayer.Concrete.Person>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Users By Role</title>
+
+</head>
+
+<body>
+    <div class="col-md-12">
+        <a href="/Person/Add" class="btn btn-info">New Person</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Mail Address</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Mail</td>
+                    <td>@item.Role.RoleName</td>
+                    <td>@item.PersonStatus</td>
+                    <td><a href="/Person/Details/@item.PersonID" class="btn btn-warning">Detail</a></td>
+                    <td><a href="/Person/Update/@item.PersonID" class="btn btn-default">Edit</a></td>
+                    <td><a href="/Person/Delete/@item.PersonID" class="btn btn-danger">Delete</a></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</body>
+</html>
+

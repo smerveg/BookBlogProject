@@ -1,0 +1,48 @@
+﻿@using BookBlogProject.EntityLayer.ViewModels
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<BookVM>
+
+@{
+    ViewBag.Title = "Books";
+    Layout = "~/Views/Shared/_homeLayout.cshtml";
+}
+
+<html>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12  mb-5 mb-lg-0">
+            @foreach (var item in Model)
+            {
+                <article class="row mb-5">
+                    <div class="col-md-4 mb-4 mb-md-0">
+                        <div class="post-slider slider-sm">
+                            <img loading="lazy" src="@Url.Content(item.BookImage)" class="img-fluid" alt="post-thumb" style="height:200px; object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <h3 class="h5">
+                            <a class="post-title" href="/Home/BookDetail/@item.BookID">
+                                @item.BookName
+                            </a>
+                        </h3>
+
+                        <p>@item.BookDescription</p> <a href="/Home/BookDetail/@item.BookID" class="btn btn-outline-primary">Continue Reading</a>
+                    </div>
+                </article>
+            }
+            @Html.PagedListPager((IPagedList)Model, p => Url.Action("Books", new { p }), new PagedListRenderOptions
+            {
+                LiElementClasses = new List<string>
+                { "page-link"}
+            })
+
+        </div>
+
+    </div>
+</div>
+
+</html>
+
+

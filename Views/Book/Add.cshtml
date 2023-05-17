@@ -1,0 +1,172 @@
+﻿@model BookBlogProject.EntityLayer.ViewModels.BookVM
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    @*<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">s*@
+    <title>Add Book</title>
+
+    <link href="~/Content/css/select2.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/select2.min.js"></script>
+
+</head>
+
+<body>
+    @using (Html.BeginForm("Add", "Book", FormMethod.Post, new { enctype ="multipart/form-data"}))
+    {
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.BookName, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.BookName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Release Year")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.ReleaseYear, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Book Description")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextAreaFor(x => x.BookDescription, new { @class = "form-control", rows = 10, columns = 10 })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+         <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Image")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.BookImage, new { type="file", accept = "image/jpeg,  image/jpg", @class = "form-control" })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Page Count")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.PageCount, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Publisher")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Cateogry")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.CategoryID, (IEnumerable<SelectListItem>)ViewBag.Categories, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.CategoryID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Authors")
+            </div>
+            <div class="col-sm-7">
+                @Html.ListBoxFor(m => m.SelectedAuthors, (IEnumerable<SelectListItem>)ViewBag.Authors,
+
+                new { multiple = "multiple", @id = "lbAuthors", style = "width:500px" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.SelectedAuthors, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.BookStatus, (IEnumerable<SelectListItem>)ViewBag.Status, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4"></div>
+        </div>
+        <br />
+
+        <button class="btn btn-dark">Save</button>
+
+    </form>
+
+    }
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        $(".Aut").select2({
+            placeholder: "Author",
+            theme: "classic",
+            ajax: {
+                url: "/Book/GetAuthorList",
+                datatype: "json",
+                data: function (params) {
+                    return {
+                        searchTerm: params.term
+                    };
+                },
+                processResults: function (data, params) {
+                    return {
+                        results: data
+                    };
+                }
+
+            }
+        });
+    });
+
+    $(".Aut").on("change", function () {
+        var autId = $(this).val();
+        $("#textBoxVal").val(autId);
+        var textBoxValueData = $("#textBoxVal").val();
+
+        $.ajax({
+            url: "/Book/deneme?data=" + textBoxValueData,
+            dataType: "json",
+            type: "post",
+        });
+    })
+       
+        $(document).ready(function () {
+            $("#lbAuthors").select2({
+                placeholder: "Authors"
+            });
+
+        });
+
+</script>
+

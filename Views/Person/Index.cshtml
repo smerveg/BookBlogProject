@@ -1,0 +1,108 @@
+﻿@using BookBlogProject.EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Person>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+</head>
+
+<body>
+    <input type="hidden" id="peid" />
+    <div class="col-md-12">
+        <a href="/Person/Add" class="btn btn-info">New Person</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>User Name</th>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Mail Address</th>
+                <th>Role</th>
+                <th>Status</th>
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.UserName</td>
+                    <td>@item.Name</td>
+                    <td>@item.LastName</td>
+                    <td>@item.Mail</td>
+                    <td>@item.Role.RoleName</td>
+                    <td>@item.PersonStatus</td>
+                    <td><a href="/Person/Details/@item.PersonID" class="btn btn-warning">Detail</a></td>
+                    <td><a href="/Person/Update/@item.PersonID" class="btn btn-default">Edit</a></td>
+                    <th><a id="showModal" class="btn btn-info" onclick="Confirm(@item.PersonID)">Delete</a></th>
+                </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+        {
+            LiElementClasses = new List<string>
+            { "page-link"}
+        })
+    </div>
+
+
+
+</body>
+
+@Html.Partial("_confirmationPartial")
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('.btnCancel').click(function () {
+            window.location.href = '/Person/Index';
+        })
+
+        $('#btnDelete').click(function () {
+
+            var personId = $('#peid').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Person/Delete',
+                data: { id: personId },
+                success: function (result) {
+                    if (result) {
+                        $('#peid').val(null);
+                        window.location.href = '/Person/Index';
+
+                    }
+                    else {
+                        alert('wrong');
+                    }
+                }
+
+
+
+            })
+        })
+
+
+
+    })
+    var Confirm = function (id) {
+        $('#peid').val(id);
+        $('#confirmModal').modal('show');
+
+    }
+
+</script>
+

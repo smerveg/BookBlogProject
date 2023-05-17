@@ -1,0 +1,88 @@
+﻿@model IEnumerable<BookBlogProject.EntityLayer.Concrete.Book>
+@{
+    ViewBag.Title = "BooksByCategory";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+<body>
+    <input type="hidden" id="bid" />
+    <div class="col-md-12">
+        <a href="/Book/Add" class="btn btn-info">New Book</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Release Year</th>
+                <th>Status</th>               
+                <th>Detail</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.BookName</td>
+                    <td>@item.ReleaseYear</td>
+                    <td>@item.BookStatus</td>
+                    <td><a href="/Book/Details/@item.BookID" class="btn btn-warning">Detail</a></td>
+                    <td><a href="/Book/Update/@item.BookID" class="btn btn-default">Edit</a></td>
+                    <th><a id="showModal" class="btn btn-info" onclick="Confirm(@item.BookID)">Delete</a></th>
+                </tr>
+            }
+
+        </table>
+    </div>
+
+</body>
+
+
+@Html.Partial("_confirmationPartial")
+
+</html>
+<script>
+    $(document).ready(function () {
+        $('.btnCancel').click(function () {
+            window.location.href = '/Book/Index';
+        })
+
+        $('#btnDelete').click(function () {
+
+            var bookId = $('#bid').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Book/Delete',
+                data: { id: bookId },
+                success: function (result) {
+                    if (result) {
+                        $('#bid').val(null);
+                        window.location.href = '/Book/Index';
+
+                    }
+                    else {
+                        alert('wrong');
+                    }
+                }
+
+
+
+            })
+        })
+
+
+
+    })
+    var Confirm = function (id) {
+        $('#bid').val(id);
+        $('#confirmModal').modal('show');
+
+    }
+
+</script>
+
