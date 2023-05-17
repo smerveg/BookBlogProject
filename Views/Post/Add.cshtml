@@ -1,0 +1,74 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Post
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Add Post</title>
+</head>
+<body>
+
+    @using (Html.BeginForm("Add", "Post", FormMethod.Post))
+    {
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Book")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.BookID,(IEnumerable<SelectListItem>)ViewBag.Books,"", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.BookID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Title")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.PostTitle, new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.PostTitle, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Content")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextAreaFor(x => x.PostContent, new { @class = "form-control", rows = 10, columns = 40 })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.PostContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.DropDownListFor(x => x.PostStatus, (IEnumerable<SelectListItem>)ViewBag.Status, "", new { @class = "form-control" })
+            </div>
+            <div class="col-sm-4">
+                @Html.ValidationMessageFor(x => x.PostStatus, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <br />
+
+        <button class="btn btn-dark">Save</button>
+
+    </form>
+
+    }
+
+</body>
+</html>
+

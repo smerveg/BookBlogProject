@@ -1,0 +1,116 @@
+﻿@using BookBlogProject.EntityLayer.Concrete
+@using PagedList
+@using PagedList.Mvc
+@model PagedList.IPagedList<Author>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+
+<body>
+    <div class="col-md-12">
+        <input type="hidden" id="aid" />
+        <a href="/Author/Add" class="btn btn-info">New Author</a>
+        <br />
+        <br />
+        <table class="table table-bordered">
+            <tr>
+                <th>Name</th>
+                <th>Lastname</th>
+                <th>Status</th>
+                <th>Books</th>
+                <th>Detail</th>
+                @if (!User.IsInRole("PA"))
+                {
+                    <th>Edit</th>
+                    <th>Delete</th>
+                }
+
+
+            </tr>
+            @foreach (var item in Model)
+            {
+        <tr>
+            <td>@item.AuthorName</td>
+            <td>@item.AuthorLastName</td>
+            <td>@item.AuthorStatus</td>
+            @if (item.Books.Count() > 0)
+            {
+                <td><a href="/Author/BooksByAuthor/@item.AuthorID" class="btn btn-primary">Books</a></td>
+
+            }
+            else
+            {
+                <td></td>
+            }
+            <td><a href="/Author/Details/@item.AuthorID" class="btn btn-warning">Detail</a></td>
+            @if (!User.IsInRole("PA"))
+            {
+                <td><a href="/Author/Update/@item.AuthorID" class="btn btn-default">Edit</a></td>
+                <td><a id="showModal" class="btn btn-info" onclick="Confirm(@item.AuthorID)">Delete</a></td>
+            }
+
+
+
+        </tr>
+            }
+
+        </table>
+        @Html.PagedListPager((IPagedList)Model, p => Url.Action("Index", new { p }), new PagedListRenderOptions
+          {
+              LiElementClasses = new List<string>
+              { "page-link"}
+          })
+    </div>
+</body>
+@Html.Partial("_confirmationPartial")
+</html>
+<script>
+    $(document).ready(function () {
+        $('.btnCancel').click(function () {
+            window.location.href = '/Author/Index';
+        })
+
+        $('#btnDelete').click(function () {
+
+            var authorId = $('#aid').val();
+            $.ajax({
+                type: 'POST',
+                url: '/Author/Delete',
+                data: { id: authorId },
+                success: function (result) {
+                    if (result) {
+                        $('#aid').val(null);
+                        window.location.href = '/Author/Index';
+
+                    }
+                    else {
+                        alert('wrong');
+                    }
+                }
+
+
+
+            })
+        })
+
+
+
+    })
+    var Confirm = function (id) {
+        $('#aid').val(id);
+        $('#confirmModal').modal('show');
+
+    }
+
+</script>
+
+

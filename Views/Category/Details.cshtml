@@ -1,0 +1,47 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Category
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Category Details</title>
+</head>
+<body>
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Description")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryDescription, new { @class = "form-control", @readonly = true })
+
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.CategoryStatus, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+
+    </form>
+</body>
+</html>
+

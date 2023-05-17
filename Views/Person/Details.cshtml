@@ -1,0 +1,81 @@
+﻿@model BookBlogProject.EntityLayer.Concrete.Person 
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_adminLayout.cshtml";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <form>
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("User name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Name")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Lastname")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.LastName, new { @class = "form-control", @readonly=true })
+                
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Password")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Mail")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.Mail, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Role")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x=>x.Role.RoleName, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        <br />
+        <div class="form-group row">
+            <div class="col-sm-1">
+                @Html.Label("Status")
+            </div>
+            <div class="col-sm-7">
+                @Html.TextBoxFor(x => x.PersonStatus, new { @class = "form-control", @readonly = true })
+            </div>
+        </div>
+        
+    </form>
+</body>
+</html>
+
